@@ -1,0 +1,72 @@
+# Evaluation configuration
+defaults:
+  - dataset: synthetic
+  - features: default
+
+# Data configuration
+data:
+  type: synthetic  # synthetic, lobster, kaggle_crypto
+  max_levels: 10
+  
+  # Synthetic data parameters
+  synthetic:
+    initial_price: 100.0
+    tick_size: 0.01
+    max_levels: 10
+    arrival_rate: 100.0
+    duration_seconds: 3600
+  
+  # LOBSTER data parameters
+  lobster:
+    symbol: AAPL
+    date: "2020-01-02"
+    file_path: "data/lobster/AAPL_20200102_34200000_37800000_orderbook_10.csv"
+  
+  # Kaggle crypto data parameters
+  kaggle_crypto:
+    symbol: BTC-USD
+    file_path: "data/crypto/btc_orderbook.csv"
+
+# Feature configuration
+features:
+  ofi:
+    levels: 5
+    window: 10
+  
+  spread:
+    window: 20
+  
+  depth:
+    levels: 5
+    window: 10
+  
+  imbalance:
+    levels: 5
+    window: 10
+  
+  vwap:
+    window: 20
+  
+  rolling_returns:
+    windows: [1, 5, 10, 20]
+  
+  microprice:
+    window: 10
+
+# Labeling configuration
+labeling:
+  horizon: 1
+  threshold: 0.001
+  method: ternary
+
+# MLflow configuration
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "microstructure_signals"
+
+# Evaluation parameters
+run_id: null  # MLflow run ID to evaluate
+output_path: null  # Path to save evaluation results, if null doesn't save
+
+
+

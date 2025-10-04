@@ -1,0 +1,28 @@
+# Default feature configuration
+features:
+  ofi:
+    levels: 5
+    window: 10
+  
+  spread:
+    window: 20
+  
+  depth:
+    levels: 5
+    window: 10
+  
+  imbalance:
+    levels: 5
+    window: 10
+  
+  vwap:
+    window: 20
+  
+  rolling_returns:
+    windows: [1, 5, 10, 20]
+  
+  microprice:
+    window: 10
+
+
+

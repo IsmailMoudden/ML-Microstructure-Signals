@@ -1,0 +1,15 @@
+# Random Forest model configuration
+model:
+  type: random_forest
+  random_state: 42
+  class_weight: balanced
+  
+  params:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 5
+    min_samples_leaf: 2
+    max_features: sqrt
+
+
+

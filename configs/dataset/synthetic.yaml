@@ -1,0 +1,13 @@
+# Synthetic data config
+data:
+  type: synthetic
+  max_levels: 10
+  synthetic:
+    initial_price: 100.0
+    tick_size: 0.01
+    max_levels: 10
+    arrival_rate: 100.0
+    duration_seconds: 3600
+
+
+

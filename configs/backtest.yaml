@@ -1,0 +1,96 @@
+# Backtesting configuration
+defaults:
+  - dataset: synthetic
+  - features: default
+
+# Data configuration
+data:
+  type: synthetic  # synthetic, lobster, kaggle_crypto
+  max_levels: 10
+  
+  # Synthetic data parameters
+  synthetic:
+    initial_price: 100.0
+    tick_size: 0.01
+    max_levels: 10
+    arrival_rate: 100.0
+    duration_seconds: 3600
+  
+  # LOBSTER data parameters
+  lobster:
+    symbol: AAPL
+    date: "2020-01-02"
+    file_path: "data/lobster/AAPL_20200102_34200000_37800000_orderbook_10.csv"
+  
+  # Kaggle crypto data parameters
+  kaggle_crypto:
+    symbol: BTC-USD
+    file_path: "data/crypto/btc_orderbook.csv"
+
+# Feature configuration
+features:
+  ofi:
+    levels: 5
+    window: 10
+  
+  spread:
+    window: 20
+  
+  depth:
+    levels: 5
+    window: 10
+  
+  imbalance:
+    levels: 5
+    window: 10
+  
+  vwap:
+    window: 20
+  
+  rolling_returns:
+    windows: [1, 5, 10, 20]
+  
+  microprice:
+    window: 10
+
+# MLflow configuration
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "microstructure_signals"
+
+# Signal generation configuration
+signal:
+  long_threshold: 0.6
+  short_threshold: 0.4
+  position_sizing: fixed  # fixed, kelly
+  position_size: 1.0
+  kelly_fraction: 0.25
+  max_position: 10.0
+
+# Execution configuration
+execution:
+  transaction_cost: 0.001
+  slippage: 0.0005
+  max_position: 10.0
+  min_trade_size: 0.1
+  execution_delay: 1
+
+# Metrics configuration
+metrics:
+  risk_free_rate: 0.02
+  benchmark_return: 0.0
+  trading_days: 252
+
+# Walk-forward analysis configuration
+walk_forward:
+  enabled: false
+  train_window: 1000
+  test_window: 200
+
+# Backtest parameters
+predictions_path: null  # Path to predictions file, if null uses run_id
+run_id: null  # MLflow run ID for model predictions
+output_path: null  # Path to save backtest results, if null doesn't save
+
+
+

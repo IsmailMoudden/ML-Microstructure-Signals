@@ -1,0 +1,109 @@
+# Training configuration
+defaults:
+  - dataset: synthetic
+  - features: default
+  - model: lgbm
+  - backtest: default
+
+# Data configuration
+data:
+  type: synthetic  # synthetic, lobster, kaggle_crypto
+  max_levels: 10
+  test_size: 0.2
+  validation_size: 0.2
+  
+  # Synthetic data parameters
+  synthetic:
+    initial_price: 100.0
+    tick_size: 0.01
+    max_levels: 10
+    arrival_rate: 100.0
+    duration_seconds: 3600
+  
+  # LOBSTER data parameters
+  lobster:
+    symbol: AAPL
+    date: "2020-01-02"
+    file_path: "data/lobster/AAPL_20200102_34200000_37800000_orderbook_10.csv"
+  
+  # Kaggle crypto data parameters
+  kaggle_crypto:
+    symbol: BTC-USD
+    file_path: "data/crypto/btc_orderbook.csv"
+
+# Feature configuration
+features:
+  ofi:
+    levels: 5
+    window: 10
+  
+  spread:
+    window: 20
+  
+  depth:
+    levels: 5
+    window: 10
+  
+  imbalance:
+    levels: 5
+    window: 10
+  
+  vwap:
+    window: 20
+  
+  rolling_returns:
+    windows: [1, 5, 10, 20]
+  
+  microprice:
+    window: 10
+
+# Model configuration
+model:
+  type: lightgbm  # logistic_regression, random_forest, lightgbm, lstm, transformer
+  random_state: 42
+  class_weight: balanced
+  
+  # Model-specific parameters
+  params:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    verbose: -1
+
+# Labeling configuration
+labeling:
+  horizon: 1
+  threshold: 0.001
+  method: ternary
+
+# MLflow configuration
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "microstructure_signals"
+
+# Backtest configuration
+backtest:
+  signal:
+    long_threshold: 0.6
+    short_threshold: 0.4
+    position_sizing: fixed
+    position_size: 1.0
+    kelly_fraction: 0.25
+    max_position: 10.0
+  
+  execution:
+    transaction_cost: 0.001
+    slippage: 0.0005
+    max_position: 10.0
+    min_trade_size: 0.1
+    execution_delay: 1
+  
+  metrics:
+    risk_free_rate: 0.02
+    benchmark_return: 0.0
+    trading_days: 252
+
+
+

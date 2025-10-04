@@ -1,0 +1,15 @@
+# LightGBM config - basic setup
+model:
+  type: lightgbm
+  random_state: 42
+  class_weight: balanced
+  params:
+    n_estimators: 100  # might need more
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    verbose: -1
+
+
+
