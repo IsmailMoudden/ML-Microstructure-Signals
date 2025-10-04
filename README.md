@@ -2,7 +2,7 @@
 
 A machine learning system for predicting short-term mid-price moves from order book features and backtesting trading signals.
 
-**Reppor**: [ML_Microstructure_Signals_Research_Paper.pdf](ML_Microstructure_Signals_Research_Paper.pdf) 
+**Report**: [ML_Microstructure_Signals_Research_Paper.pdf](ML_Microstructure_Signals_Research_Paper.pdf) 
 
 **Note**: This is a student project - some features are experimental and results may vary.
 
